@@ -60,7 +60,7 @@
     <key>JVMOptions</key>
     <array>
       <string>-Xms64m</string>
-      <string>-Xmx2048m</string>
+      <string>-Xmx512m</string>
       <string>-Djna.nosys=true</string>
 
       <string>-Xdock:icon=Contents/Resources/sketch.icns</string>
