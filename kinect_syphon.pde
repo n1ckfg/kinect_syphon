@@ -39,7 +39,7 @@ void setup() {
   }
     
   context.setMirror(mirror);
-  context.enableDepth();
+  context.enableDepth(sW, sH, fps);
     
   server = new SyphonServer(this, serverName);
 }
@@ -47,15 +47,18 @@ void setup() {
 void draw() {
   context.update();
   buffer.beginDraw();
-  buffer.image(context.depthImage(), 0, 0, sW, sH);
+  buffer.image(context.depthImage(), 0, 0);
   buffer.endDraw();
   server.sendImage(buffer);
   
   if (showImage) {
     image(buffer,0,0);
+    frame.setTitle(""+frameRate);
   } else {
-    background(0,255,0);
+    if (frameRate > fps-1) {
+      background(0,255,0);
+    } else {
+      background(255,0,0);
+    }
   }
-  
-  frame.setTitle(""+frameRate);
 }
