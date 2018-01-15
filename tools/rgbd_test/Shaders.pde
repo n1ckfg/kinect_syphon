@@ -1,22 +1,18 @@
 PShader shader; 
 
-PImage tex1, tex2;
-
 PVector shaderMousePos = new PVector(0,0);
 PVector shaderMouseClick = new PVector(0,0);
 
 void setupShaders() {
   shader = loadShader("rgba.glsl"); 
   shaderSetSize(shader);
-  tex1 = loadImage("rgb.png");
-  tex2 = loadImage("depth.png");
-  shaderSetTexture(shader, "texture1", tex1);
-  shaderSetTexture(shader, "texture2", tex2);
+  shaderSetTexture(shader, "tex0", loadImage("rgb.png"));
+  shaderSetTexture(shader, "tex1", loadImage("depth.png"));
 }
 
 void updateShaders() {
-  shaderSetMouse(shader);
-  shaderSetTime(shader);
+  //shaderSetMouse(shader);
+  //shaderSetTime(shader);
 }
 
 void drawShaders() {
