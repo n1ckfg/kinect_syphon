@@ -1,4 +1,5 @@
 PShader shader; 
+PImage rgbImg, depthImg;
 
 PVector shaderMousePos = new PVector(0,0);
 PVector shaderMouseClick = new PVector(0,0);
@@ -6,8 +7,10 @@ PVector shaderMouseClick = new PVector(0,0);
 void setupShaders() {
   shader = loadShader("rgba.glsl"); 
   shaderSetSize(shader);
-  shaderSetTexture(shader, "tex0", loadImage("rgb.png"));
-  shaderSetTexture(shader, "tex1", loadImage("depth.png"));
+  rgbImg = loadImage("rgb.png");
+  depthImg = loadImage("depth.png");
+  shaderSetTexture(shader, "tex0", rgbImg);
+  shaderSetTexture(shader, "tex1", depthImg);
 }
 
 void updateShaders() {

@@ -1,19 +1,22 @@
-import codeanticode.syphon.*;
-
-PGraphics canvas;
-SyphonServer server;
+Settings settings;
 
 void setup() {
-  size(640, 480, P3D);
-  canvas = createGraphics(width, height, P3D);
-  server = new SyphonServer(this, "Kinect_Syphon");
+  size(640, 480, P2D);
+  settings = new Settings("settings.txt");
+  frameRate(30);
+  
+  setupSyphon();
   setupShaders();
+  setupKinect();
 }
 
 void draw() {
-  canvas.beginDraw();
-  canvas.filter(shader);
-  canvas.endDraw();
-  image(canvas, 0, 0);
-  server.sendImage(canvas);
+  updateKinect();
+  
+  tex.beginDraw();
+  tex.filter(shader);
+  tex.endDraw();
+  image(tex, 0, 0);
+  
+  updateSyphon();
 }
