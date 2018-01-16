@@ -8,6 +8,7 @@ void setupKeystone() {
   depthImgKey = createGraphics(width, height, P2D);
   ks = new Keystone(this);
   surface = ks.createCornerPinSurface(width, height, 20); // width, height, divisions
+  ks.load();
 }
 
 void updateKeystone() {

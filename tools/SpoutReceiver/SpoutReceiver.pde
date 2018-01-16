@@ -20,7 +20,7 @@ Spout spout;
 void setup() {
   
   // Initial window size
-  size(640, 360, P3D);
+  size(640, 480, P3D);
   
   // Needed for resizing the window to the sender size
   // Processing 3+ only

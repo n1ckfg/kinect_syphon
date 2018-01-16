@@ -29,14 +29,15 @@ public void setup() {
   //client = new SyphonClient(this, "Quartz Composer", "Raw Image");
   //client = new SyphonClient(this, "Quartz Composer", "Scene");
   
-  background(0);
+  setupPointCloud();
 }
 
 public void draw() {  
   if (client.newFrame()) {
     background(0);
     canvas = client.getGraphics(canvas);
-    image(canvas, 0, 0, width, height);    
+    //image(canvas, 0, 0, width, height);    
+    drawPointCloud();
   }  
 }
 
