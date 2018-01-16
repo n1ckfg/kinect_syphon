@@ -1,7 +1,7 @@
 boolean mirror = true;
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// SIMPLEOPENNI
+// SIMPLEOPENNI (Kinect v1, all platforms)
 /*
 import SimpleOpenNI.*;
 
@@ -42,7 +42,7 @@ void updateKinect() {
 }
 */
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
-// KINECT4WIN (WIN / MS SDK / Kinect v1)
+// KINECT4WIN (WIN / MS SDK 1.8 / Kinect v1)
 
 import kinect4WinSDK.Kinect;
 import kinect4WinSDK.SkeletonData;
