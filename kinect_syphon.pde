@@ -10,12 +10,14 @@ void setup() {
   setupSyphon();
   setupShaders();
   setupKinect();
+  setupKeystone();
 }
 
 void draw() {
   background(0);
   
   updateKinect();
+  updateKeystone();
   updateShaders();
   
   tex.beginDraw();

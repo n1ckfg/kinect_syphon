@@ -15,7 +15,7 @@ void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
   shaderSetTexture(shader, "tex0", rgbImg);
-  shaderSetTexture(shader, "tex1", depthImg);
+  shaderSetTexture(shader, "tex1", depthImgKey);
 }
 
 void drawShaders() {
