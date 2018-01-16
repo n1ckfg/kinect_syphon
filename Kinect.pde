@@ -23,6 +23,7 @@ void updateKinect() {
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 // OPENKINECT (MAC / OPENNI / Kinect v1)
+/*
 import org.openkinect.freenect.*;
 import org.openkinect.processing.*;
 
@@ -38,4 +39,21 @@ void setupKinect() {
 void updateKinect() {
   depthImg = kinect.getDepthImage();
   rgbImg = kinect.getVideoImage();
+}
+*/
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// KINECT4WIN (WIN / MS SDK / Kinect v1)
+
+import kinect4WinSDK.Kinect;
+import kinect4WinSDK.SkeletonData;
+
+Kinect kinect;
+
+void setupKinect() {
+  kinect = new Kinect(this);
+}
+
+void updateKinect() {
+  depthImg = kinect.GetDepth();
+  rgbImg = kinect.GetImage();
 }
