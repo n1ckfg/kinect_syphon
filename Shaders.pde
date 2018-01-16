@@ -9,22 +9,17 @@ void setupShaders() {
   shaderSetSize(shader);
   rgbImg = loadImage("rgb.png");
   depthImg = loadImage("depth.png");
-  shaderSetTexture(shader, "tex0", rgbImg);
-  shaderSetTexture(shader, "tex1", depthImg);
 }
 
 void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
+  shaderSetTexture(shader, "tex0", rgbImg);
+  shaderSetTexture(shader, "tex1", depthImg);
 }
 
 void drawShaders() {
   filter(shader);
-}
-
-void runShaders() {
-  updateShaders();
-  drawShaders();
 }
 
 // ~ ~ ~ ~ ~ ~ ~

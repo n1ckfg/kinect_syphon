@@ -1,6 +1,7 @@
 String serverName = "Kinect_Server";
 
-// MAC
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+// SYPHON (MAC)
 import codeanticode.syphon.*;
 
 PGraphics tex;
@@ -17,7 +18,7 @@ void updateSyphon() {
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 /*
-// WIN
+// SPOUT (WIN)
 import spout.*;
 
 Spout server;
@@ -27,7 +28,8 @@ void setupSyphon() {
   server.createSender(serverName);
 }
 
-void drawSyphon() {
+void updateSyphon() {
   server.sendTexture();
 }
 */
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~

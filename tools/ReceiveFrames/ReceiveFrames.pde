@@ -32,8 +32,9 @@ public void setup() {
   background(0);
 }
 
-public void draw() {    
+public void draw() {  
   if (client.newFrame()) {
+    background(0);
     canvas = client.getGraphics(canvas);
     image(canvas, 0, 0, width, height);    
   }  
