@@ -7,14 +7,9 @@ Keystone ks;
 CornerPinSurface surface;
 PGraphics depthImgKey;
 
-void initCalibration() {
-  ks = new Keystone(this);
-  surface = ks.createCornerPinSurface(width, height, 20); // width, height, divisions
-}
-
 void setupCalibration() {
   depthImgKey = createGraphics(width, height, P2D);
-  initCalibration();
+  resetCalibration();
   ks.load();
 }
 
@@ -24,5 +19,23 @@ void updateCalibration() {
   surface.render(depthImgKey, depthImg);
   depthImgKey.endDraw();
 }
+
+void toggleCalibration() {
+  ks.toggleCalibration();
+}
+
+void loadCalibration() {
+  ks.load();
+}
+
+void saveCalibration() {
+  ks.save();
+}
+
+void resetCalibration() {
+  ks = new Keystone(this);
+  surface = ks.createCornerPinSurface(width, height, 20); // width, height, divisions
+}
+
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
