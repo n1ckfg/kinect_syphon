@@ -1,3 +1,6 @@
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
+
+// KEYSTONE (quick setup, but not accurate)
 import deadpixel.keystone.*;
 
 Keystone ks;
@@ -21,3 +24,5 @@ void updateCalibration() {
   surface.render(depthImgKey, depthImg);
   depthImgKey.endDraw();
 }
+
+// ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
