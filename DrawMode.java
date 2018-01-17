@@ -5,7 +5,8 @@ enum DrawMode {
   
   RGBD,
   DEPTH_ONLY,
-  RGB_ONLY {
+  RGB_ONLY,
+  DEPTH_COLOR {
     @Override
     DrawMode next() {
       // rollover to the first

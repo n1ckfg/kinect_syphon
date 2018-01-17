@@ -1,4 +1,4 @@
-PShader shader; 
+PShader shader, shader2; 
 PImage rgbImg, depthImg;
 
 PVector shaderMousePos = new PVector(0,0);
@@ -6,16 +6,22 @@ PVector shaderMouseClick = new PVector(0,0);
 
 void setupShaders() {
   shader = loadShader("rgba.glsl"); 
+  shader2 = loadShader("depth_color.glsl"); 
   shaderSetSize(shader);
-  rgbImg = loadImage("rgb.png");
-  depthImg = loadImage("depth.png");
+  shaderSetSize(shader2);
+  //rgbImg = loadImage("rgb.png");
+  //depthImg = loadImage("depth.png");
 }
 
 void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
-  shaderSetTexture(shader, "tex0", rgbImg);
-  shaderSetTexture(shader, "tex1", depthImgKey);
+  if (drawMode == DrawMode.RGBD) {
+    shaderSetTexture(shader, "tex0", rgbImg);
+    shaderSetTexture(shader, "tex1", depthImgKey);
+  } else if (drawMode == DrawMode.DEPTH_COLOR) {
+    shaderSetTexture(shader2, "tex0", depthImg);
+  }
 }
 
 void drawShaders() {

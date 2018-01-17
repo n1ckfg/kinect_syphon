@@ -36,8 +36,8 @@ public void draw() {
   if (client.newFrame()) {
     background(0);
     canvas = client.getGraphics(canvas);
-    //image(canvas, 0, 0, width, height);    
-    drawPointCloud();
+    image(canvas, 0, 0, width, height);    
+    //drawPointCloud();
   }  
 }
 
