@@ -16,7 +16,7 @@ void setupShaders() {
 void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
-  if (drawMode == DrawMode.RGBD) {
+  if (drawMode == DrawMode.RGBA) {
     shaderSetTexture(shader, "tex0", rgbImg);
     shaderSetTexture(shader, "tex1", depthImgKey);
   } else if (drawMode == DrawMode.DEPTH_COLOR) {

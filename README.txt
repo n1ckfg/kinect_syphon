@@ -2,8 +2,8 @@ Kinect_Syphon  |  fox-gieg.com
 Processing app to send Kinect v1 / clone depth map via Syphon or Spout. 
 
 CONTROLS
-D: Advance through draw modes (RGBD, depth, RGB, colorized depth).
-C: Toggle calibration in RGBD mode.
+D: Advance through draw modes (RGBA, depth, RGB, colorized depth).
+C: Toggle calibration in RGBA mode.
 S: Save calibration.
 L: Load saved calibration.
 R: Reset calibration.

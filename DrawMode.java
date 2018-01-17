@@ -3,7 +3,7 @@
 
 enum DrawMode { 
   
-  RGBD,
+  RGBA,
   DEPTH_ONLY,
   RGB_ONLY,
   DEPTH_COLOR {

@@ -8,7 +8,7 @@ int textDelay = 2000;
 void setup() {
   size(640, 480, P2D);
   settings = new Settings("settings.txt");
-  drawMode = DrawMode.RGBD;
+  drawMode = DrawMode.RGBA;
   frameRate(30);
   font = loadFont("Silkscreen-18.vlw");
   textFont(font, fontSize);
@@ -25,10 +25,10 @@ void draw() {
   background(0);
   
   updateKinect();
-  if (drawMode == DrawMode.RGBD) updateCalibration();
+  if (drawMode == DrawMode.RGBA) updateCalibration();
   updateShaders();
     
-  if (drawMode == DrawMode.RGBD) {
+  if (drawMode == DrawMode.RGBA) {
     tex.beginDraw();
     tex.filter(shader);
     tex.endDraw();
