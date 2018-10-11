@@ -1,14 +1,14 @@
 Settings settings;
 DrawMode drawMode;
 LayoutMode layoutMode;
-PGraphics depthBuffer, depthBuffer2;
+PGraphics depthBuffer, depthBuffer2, rgbBuffer;
 
 PFont font;
 int fontSize = 18;
 int lastButtonPress = 0;
 int textDelay = 2000;
 boolean glitch = false;
-float threshold = 127;
+float threshold = 27;
 
 void setup() {
   size(640, 480, P2D);
@@ -25,6 +25,7 @@ void setup() {
   } else if (layoutMode == LayoutMode.RGBDTK) {
     surface.setSize(512, 848);
     depthBuffer2 = createGraphics(512, 424, P2D);
+    rgbBuffer = createGraphics(512, 424, P2D);
   }
   
   frameRate(30);
@@ -115,13 +116,18 @@ void draw() {
     depthBuffer.image(depthImg, 0, 0);
     depthBuffer.filter(shader2);
     depthBuffer.endDraw();
-    rgbBuffer.beginDraw();
+
     depthBuffer2.beginDraw();
-    depthBuffer2.image(depthBuffer, 0, 0, depthBuffer2.width, depthBuffer2.height);
+    depthBuffer2.filter(shader3);
     depthBuffer2.endDraw();
+ 
+    rgbBuffer.beginDraw();
+    rgbBuffer.filter(shader4);
+    rgbBuffer.endDraw();
+    
     tex.beginDraw();
     tex.image(depthBuffer2, 0, height/2);
-    tex.image(rgbImg, 0, 0, width, height/2);
+    tex.image(rgbBuffer, 0, 0, width, height/2);
     tex.endDraw(); 
   }
   
