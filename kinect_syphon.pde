@@ -1,31 +1,30 @@
 Settings settings;
 DrawMode drawMode;
 LayoutMode layoutMode;
-PGraphics depthBuffer, rgbBuffer;
+PGraphics depthBuffer, depthBuffer2;
 
 PFont font;
 int fontSize = 18;
 int lastButtonPress = 0;
 int textDelay = 2000;
 boolean glitch = false;
+float threshold = 127;
 
 void setup() {
   size(640, 480, P2D);
   drawMode = DrawMode.RGBD;
   layoutMode = LayoutMode.SD;
   settings = new Settings("settings.txt");
-  
+
+  depthBuffer = createGraphics(640, 480, P2D);
+    
   if (layoutMode == LayoutMode.SD) {
-    depthBuffer = createGraphics(640, 480, P2D);
-    rgbBuffer = createGraphics(640, 480, P2D);
+    //
   } else if (layoutMode == LayoutMode.HOLOFLIX) {
     surface.setSize(1280, 720);
-    depthBuffer = createGraphics(640, 480, P2D);
-    rgbBuffer = createGraphics(640, 480, P2D);
   } else if (layoutMode == LayoutMode.RGBDTK) {
     surface.setSize(512, 848);
-    depthBuffer = createGraphics(424, 512, P2D);
-    rgbBuffer = createGraphics(424, 512, P2D);
+    depthBuffer2 = createGraphics(512, 424, P2D);
   }
   
   frameRate(30);
@@ -113,26 +112,17 @@ void draw() {
     }  
   } else if (layoutMode == LayoutMode.RGBDTK) {
     depthBuffer.beginDraw();
-    depthBuffer.image(depthImg, 0, 0, depthBuffer.width, depthBuffer.height);
+    depthBuffer.image(depthImg, 0, 0);
+    depthBuffer.filter(shader2);
     depthBuffer.endDraw();
-      
     rgbBuffer.beginDraw();
-    rgbBuffer.image(rgbImg, 0, 0, rgbBuffer.width, rgbBuffer.height);
-    rgbBuffer.endDraw();
-      
+    depthBuffer2.beginDraw();
+    depthBuffer2.image(depthBuffer, 0, 0, depthBuffer2.width, depthBuffer2.height);
+    depthBuffer2.endDraw();
     tex.beginDraw();
-    tex.pushMatrix();
-    tex.translate(width,0);
-    tex.rotate(radians(90));
-    tex.image(rgbBuffer, 0, 0);
-    tex.popMatrix();
-    
-    tex.pushMatrix();
-    tex.translate(width, height/2);
-    tex.rotate(radians(90));
-    tex.image(depthBuffer, 0, 0);
-    tex.popMatrix();
-    tex.endDraw();
+    tex.image(depthBuffer2, 0, height/2);
+    tex.image(rgbImg, 0, 0, width, height/2);
+    tex.endDraw(); 
   }
   
   tex.beginDraw();

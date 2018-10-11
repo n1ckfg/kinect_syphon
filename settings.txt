@@ -2,13 +2,13 @@ Server Name
 Kinect_Server
 
 Mirror
-true
+false
 
 Draw Mode
 RGBD
 
 Layout Mode
-HOLOFLIX
+RGBDTK
 
 Glitch
 true
