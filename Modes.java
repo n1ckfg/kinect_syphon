@@ -1,9 +1,17 @@
 // https://forum.processing.org/two/discussion/9877/how-to-use-enums
 // https://stackoverflow.com/questions/17664445/is-there-an-increment-operator-for-java-enum
 
+enum LayoutMode {
+  
+  SD,
+  HOLOFLIX,
+  RGBDTK
+
+}
+
 enum DrawMode { 
   
-  RGBA,
+  RGBD,
   DEPTH_ONLY,
   RGB_ONLY,
   DEPTH_COLOR {

@@ -3,3 +3,12 @@ Kinect_Server
 
 Mirror
 true
+
+Draw Mode
+RGBD
+
+Layout Mode
+HOLOFLIX
+
+Glitch
+true

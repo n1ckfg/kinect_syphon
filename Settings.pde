@@ -8,6 +8,27 @@ class Settings {
       for (int i=0;i<data.length;i++) {
         if (data[i].equals("Server Name")) serverName = setString(data[i+1]);
         if (data[i].equals("Mirror")) mirror = setBoolean(data[i+1]);
+        if (data[i].equals("Glitch")) glitch = setBoolean(data[i+1]);
+        if (data[i].equals("Draw Mode")) {
+            if (data[i+1].equals("RGBD")) {
+              drawMode = DrawMode.RGBD;
+            } else if (data[i+1].equals("DEPTH_ONLY")) {
+              drawMode = DrawMode.DEPTH_ONLY;
+            } else if (data[i+1].equals("RGB_ONLY")) {
+              drawMode = DrawMode.RGB_ONLY;
+            } else if (data[i+1].equals("DEPTH_COLOR")) {
+              drawMode = DrawMode.DEPTH_COLOR;              
+            }
+        }
+        if (data[i].equals("Layout Mode")) {
+            if (data[i+1].equals("SD")) {
+              layoutMode = LayoutMode.SD;
+            } else if (data[i+1].equals("HOLOFLIX")) {
+              layoutMode = LayoutMode.HOLOFLIX;
+            } else if (data[i+1].equals("RGBDTK")) {
+              layoutMode = LayoutMode.RGBDTK;
+            }
+        }
       }
     } catch(Exception e) {
       println("Couldn't load settings file. Using defaults.");

@@ -7,8 +7,8 @@ PVector shaderMouseClick = new PVector(0,0);
 void setupShaders() {
   shader = loadShader("rgba.glsl"); 
   shader2 = loadShader("depth_color.glsl"); 
-  shaderSetSize(shader);
-  shaderSetSize(shader2);
+  shaderSetSize(shader, rgbBuffer.width, rgbBuffer.height);
+  shaderSetSize(shader2, depthBuffer.width, depthBuffer.height);
   //rgbImg = loadImage("rgb.png");
   //depthImg = loadImage("depth.png");
 }
@@ -16,7 +16,7 @@ void setupShaders() {
 void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
-  if (drawMode == DrawMode.RGBA) {
+  if (drawMode == DrawMode.RGBD) {
     shaderSetTexture(shader, "tex0", rgbImg);
     shaderSetTexture(shader, "tex1", depthImg);
   } else if (drawMode == DrawMode.DEPTH_COLOR) {
@@ -33,6 +33,11 @@ void drawShaders() {
 void shaderSetSize(PShader ps) {
   ps.set("iResolution", float(width), float(height), 1.0);
 }
+
+void shaderSetSize(PShader ps, float w, float h) {
+  ps.set("iResolution", w, h, 1.0);
+}
+
 
 void shaderSetMouse(PShader ps) {
   if (mousePressed) shaderMousePos = new PVector(mouseX, height - mouseY);
