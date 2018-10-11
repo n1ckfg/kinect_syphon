@@ -16,7 +16,6 @@ void setup() {
   setupSyphon();
   setupShaders();
   setupKinect();
-  setupCalibration();
   
   lastButtonPress = millis();
 }
@@ -25,7 +24,6 @@ void draw() {
   background(0);
   
   updateKinect();
-  if (drawMode == DrawMode.RGBA) updateCalibration();
   updateShaders();
     
   if (drawMode == DrawMode.RGBA) {
