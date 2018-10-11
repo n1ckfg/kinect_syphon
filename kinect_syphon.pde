@@ -135,6 +135,11 @@ void draw() {
     tex.endDraw();
   }
   
+  tex.beginDraw();
+  tex.background(0);
+  tex.image(tex, 0, 0);
+  tex.endDraw();
+  
   updateSyphon();  
   image(tex,0,0);
   
