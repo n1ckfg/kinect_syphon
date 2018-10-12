@@ -8,7 +8,7 @@ int fontSize = 18;
 int lastButtonPress = 0;
 int textDelay = 2000;
 boolean glitch = false;
-float threshold = 25;
+float threshold = 0;
 
 void setup() {
   size(640, 480, P2D);
@@ -45,9 +45,10 @@ void setup() {
 void draw() {
   background(0);
   
+  updateControls();
   updateKinect();
   updateShaders();
-    
+  
   if (layoutMode == LayoutMode.SD) {
     if (drawMode == DrawMode.RGBD) {  
       if (glitch) {
@@ -79,25 +80,18 @@ void draw() {
     }
   } else if (layoutMode == LayoutMode.HOLOFLIX) {
     if (drawMode == DrawMode.RGBD) {
-      if (glitch) {
-        dBuffer_640.beginDraw();
-        dBuffer_640.filter(shader_threshmult_d);
-        dBuffer_640.endDraw();
-    
-        rBuffer_640.beginDraw();
-        rBuffer_640.filter(shader_threshmult_r);
-        rBuffer_640.endDraw();
-                 
-        tex.beginDraw();
-        tex.image(dBuffer_640, 0, 120);
-        tex.image(rBuffer_640, width/2, 120);
-        tex.endDraw();      
-      } else {
-        tex.beginDraw();
-        tex.image(depthImg, 0, 120);
-        tex.image(rgbImg, width/2, 120);
-        tex.endDraw();
-      }
+      dBuffer_640.beginDraw();
+      dBuffer_640.filter(shader_threshmult_d);
+      dBuffer_640.endDraw();
+  
+      rBuffer_640.beginDraw();
+      rBuffer_640.filter(shader_threshmult_r);
+      rBuffer_640.endDraw();       
+      
+      tex.beginDraw();
+      tex.image(dBuffer_640, 0, 120);
+      tex.image(rBuffer_640, width/2, 120);
+      tex.endDraw();     
     } else if (drawMode == DrawMode.DEPTH_ONLY) {
       tex.beginDraw();
       tex.image(depthImg, 0, 120);
@@ -106,28 +100,43 @@ void draw() {
       tex.beginDraw();
       tex.image(rgbImg, width/2, 120);
       tex.endDraw();
-    } else if (drawMode == DrawMode.DEPTH_COLOR) {
+    } else if (drawMode == DrawMode.DEPTH_COLOR) {      
       dBuffer_640.beginDraw();
-      dBuffer_640.image(depthImg, 0, 0);
-      dBuffer_640.filter(shader_depth_color);
+      dBuffer_640.filter(shader_threshmult_d);
       dBuffer_640.endDraw();
+
+      dBuffer2_640.beginDraw();
+      dBuffer2_640.filter(shader_depth_color2);
+      dBuffer2_640.endDraw();
+      
+      rBuffer_640.beginDraw();
+      rBuffer_640.filter(shader_threshmult_r);
+      rBuffer_640.endDraw();       
       
       tex.beginDraw();
-      tex.image(dBuffer_640, 0, 120);
-      tex.image(rgbImg, width/2, 120);
-      tex.endDraw();
+      tex.image(dBuffer2_640, 0, 120);
+      tex.image(rBuffer_640, width/2, 120);
+      tex.endDraw();  
     }  
   } else if (layoutMode == LayoutMode.RGBDTK) {
     dBuffer_640.beginDraw();
-    dBuffer_640.filter(shader_depth_color);
+    dBuffer_640.filter(shader_threshmult_d);
     dBuffer_640.endDraw();
 
+    dBuffer2_640.beginDraw();
+    dBuffer2_640.filter(shader_depth_color2);
+    dBuffer2_640.endDraw();
+    
     dBuffer_512.beginDraw();
-    dBuffer_512.image(dBuffer_640, 0, 0, dBuffer_512.width, dBuffer_512.height);
+    dBuffer_512.image(dBuffer2_640, 0, 0, dBuffer_512.width, dBuffer_512.height);
     dBuffer_512.endDraw();
  
+    rBuffer_640.beginDraw();
+    rBuffer_640.filter(shader_threshmult_r);
+    rBuffer_640.endDraw();
+    
     rBuffer_512.beginDraw();
-    rBuffer_512.image(rgbImg, 0, 0, rBuffer_512.width, rBuffer_512.height);
+    rBuffer_512.image(rBuffer_640, 0, 0, rBuffer_512.width, rBuffer_512.height);
     rBuffer_512.endDraw();
     
     tex.beginDraw();

@@ -1,4 +1,4 @@
-PShader shader_rgba, shader_depth_color, shader_threshmult_d, shader_threshmult_r;
+PShader shader_rgba, shader_depth_color, shader_depth_color2, shader_threshmult_d, shader_threshmult_r;
 PImage rgbImg, depthImg;
 
 PVector shaderMousePos = new PVector(0,0);
@@ -7,10 +7,13 @@ PVector shaderMouseClick = new PVector(0,0);
 void setupShaders() {
   shader_rgba = loadShader("rgba.glsl"); 
   shader_depth_color = loadShader("depth_color.glsl"); 
-  shader_threshmult_d = loadShader("threshmult.glsl");
-  shader_threshmult_r = loadShader("threshmult.glsl");
+  shader_depth_color2 = loadShader("depth_color2.glsl"); 
+  shader_threshmult_d = loadShader("threshmult_d.glsl");
+  shader_threshmult_r = loadShader("threshmult_r.glsl");
+  
   shaderSetSize(shader_rgba, 640, 480);
   shaderSetSize(shader_depth_color, 640, 480);
+  shaderSetSize(shader_depth_color2, 640, 480);
   shaderSetSize(shader_threshmult_d, 640, 480);
   shaderSetSize(shader_threshmult_r, 640, 480);
 }
@@ -24,14 +27,22 @@ void updateShaders() {
   }
   
   if (layoutMode == LayoutMode.RGBDTK || drawMode == DrawMode.DEPTH_COLOR) {
-    shaderSetTexture(shader_depth_color, "tex0", depthImg);
+    shaderSetTexture(shader_depth_color2, "tex0", dBuffer_640);
   }
-  
-  if (layoutMode == LayoutMode.RGBDTK || (layoutMode == LayoutMode.HOLOFLIX && glitch)) {
+    
+  if (layoutMode == LayoutMode.RGBDTK || layoutMode == LayoutMode.HOLOFLIX) {
+    if (glitch) {
+      shaderSetVar(shader_threshmult_d, "alpha", 0);
+      shaderSetVar(shader_threshmult_r, "alpha", 0);
+    } else {
+      shaderSetVar(shader_threshmult_d, "alpha", 1);
+      shaderSetVar(shader_threshmult_r, "alpha", 1);
+    }
     shaderSetVar(shader_threshmult_d, "threshold", threshold);
     shaderSetTexture(shader_threshmult_d, "tex0", depthImg);
     shaderSetVar(shader_threshmult_r, "threshold", threshold);
-    shaderSetTexture(shader_threshmult_r, "tex0", rgbImg);
+    shaderSetTexture(shader_threshmult_r, "tex0", depthImg);
+    shaderSetTexture(shader_threshmult_r, "tex1", rgbImg);
   }
 }
 

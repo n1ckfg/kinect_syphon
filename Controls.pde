@@ -6,23 +6,26 @@ void keyPressed() {
       break;
     case 'g':
       glitch = !glitch;
-  }
-  
-  switch(keyCode) {
-    case UP:
-      changeThreshold(threshStep);
-      break;
-    case DOWN:
-      changeThreshold(-threshStep);
-      break;
-  }
-
+  }  
 } 
 
-int threshStep = 5;
+float threshStep = 5;
 
-void changeThreshold(int val) {
+void changeThreshold(float val) {
     threshold += val;
     threshold = constrain(threshold, 0, 255);
     println("threshold: " + threshold);
+}
+
+void updateControls() {
+  if (keyPressed) {
+    switch(keyCode) {
+      case UP:
+        changeThreshold(threshStep);
+        break;
+      case DOWN:
+        changeThreshold(-threshStep);
+        break;
+    }
+  }
 }

@@ -11,4 +11,7 @@ Layout Mode
 HOLOFLIX
 
 Glitch
-true
+false
+
+Threshold
+0

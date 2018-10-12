@@ -9,6 +9,7 @@ class Settings {
         if (data[i].equals("Server Name")) serverName = setString(data[i+1]);
         if (data[i].equals("Mirror")) mirror = setBoolean(data[i+1]);
         if (data[i].equals("Glitch")) glitch = setBoolean(data[i+1]);
+        if (data[i].equals("Threshold")) threshold = setFloat(data[i+1]);
         if (data[i].equals("Draw Mode")) {
             if (data[i+1].equals("RGBD")) {
               drawMode = DrawMode.RGBD;
