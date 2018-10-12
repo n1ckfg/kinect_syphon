@@ -8,7 +8,7 @@ Draw Mode
 RGBD
 
 Layout Mode
-RGBDTK
+HOLOFLIX
 
 Glitch
 true

@@ -1,43 +1,43 @@
-PShader shader, shader2, shader3, shader4;
+PShader shader_rgba, shader_depth_color, shader_threshmult_d, shader_threshmult_r;
 PImage rgbImg, depthImg;
 
 PVector shaderMousePos = new PVector(0,0);
 PVector shaderMouseClick = new PVector(0,0);
 
 void setupShaders() {
-  shader = loadShader("rgba.glsl"); 
-  shader2 = loadShader("depth_color.glsl"); 
-  shader3 = loadShader("threshmult.glsl");
-  shader4 = loadShader("threshmult.glsl");
-  shaderSetSize(shader, 640, 480);
-  shaderSetSize(shader2, 640, 480);
-  shaderSetSize(shader3, 512, 424);
-  shaderSetSize(shader4, 512, 424);
+  shader_rgba = loadShader("rgba.glsl"); 
+  shader_depth_color = loadShader("depth_color.glsl"); 
+  shader_threshmult_d = loadShader("threshmult.glsl");
+  shader_threshmult_r = loadShader("threshmult.glsl");
+  shaderSetSize(shader_rgba, 640, 480);
+  shaderSetSize(shader_depth_color, 640, 480);
+  shaderSetSize(shader_threshmult_d, 640, 480);
+  shaderSetSize(shader_threshmult_r, 640, 480);
 }
 
 void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
   if (drawMode == DrawMode.RGBD) {
-    shaderSetTexture(shader, "tex0", rgbImg);
-    shaderSetTexture(shader, "tex1", depthImg);
+    shaderSetTexture(shader_rgba, "tex0", rgbImg);
+    shaderSetTexture(shader_rgba, "tex1", depthImg);
   }
   
   if (layoutMode == LayoutMode.RGBDTK || drawMode == DrawMode.DEPTH_COLOR) {
-    shaderSetTexture(shader2, "tex0", depthImg);
+    shaderSetTexture(shader_depth_color, "tex0", depthImg);
   }
   
-  if (layoutMode == LayoutMode.RGBDTK) {
-    shaderSetVar(shader3, "threshold", threshold);
-    shaderSetVar(shader4, "threshold", threshold);
-    shaderSetTexture(shader3, "tex0", depthImg);
-    shaderSetTexture(shader4, "tex0", rgbImg);
+  if (layoutMode == LayoutMode.RGBDTK || (layoutMode == LayoutMode.HOLOFLIX && glitch)) {
+    shaderSetVar(shader_threshmult_d, "threshold", threshold);
+    shaderSetTexture(shader_threshmult_d, "tex0", depthImg);
+    shaderSetVar(shader_threshmult_r, "threshold", threshold);
+    shaderSetTexture(shader_threshmult_r, "tex0", rgbImg);
   }
 }
 
-void drawShaders() {
-  filter(shader);
-}
+//void drawShaders() {
+  //filter(shader);
+//}
 
 // ~ ~ ~ ~ ~ ~ ~
 
