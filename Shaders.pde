@@ -32,9 +32,11 @@ void updateShaders() {
     
   if (layoutMode == LayoutMode.RGBDTK || layoutMode == LayoutMode.HOLOFLIX) {
     if (glitch) {
+      shaderSetVar(shader_depth_color2, "alpha", 0);
       shaderSetVar(shader_threshmult_d, "alpha", 0);
       shaderSetVar(shader_threshmult_r, "alpha", 0);
     } else {
+      shaderSetVar(shader_depth_color2, "alpha", 1);
       shaderSetVar(shader_threshmult_d, "alpha", 1);
       shaderSetVar(shader_threshmult_r, "alpha", 1);
     }

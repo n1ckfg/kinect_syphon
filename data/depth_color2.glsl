@@ -1,6 +1,7 @@
 uniform vec3 iResolution;
 
 uniform sampler2D tex0;
+uniform float alpha;
 
 float map(float s, float a1, float a2, float b1, float b2) {
     return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
@@ -31,8 +32,10 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 
 	vec4 col = vec4(depthToColor(texture2D(tex0, uv).xyz), 1.0);
-
-	fragColor = col;
+    if ((col.x + col.y + col.z / 3) < 0.01) {
+        col.w = alpha;
+    }
+    fragColor = col;
 }
 
 void main() {
