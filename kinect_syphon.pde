@@ -67,7 +67,7 @@ void draw() {
       }
     } else if (drawMode == DrawMode.DEPTH_ONLY) {
       tex.beginDraw();
-      tex.image(depthImg, 0, 0);
+      tex.filter(shader_threshmult_d);
       tex.endDraw();
     } else if (drawMode == DrawMode.RGB_ONLY) {
       tex.beginDraw();
@@ -95,6 +95,7 @@ void draw() {
     } else if (drawMode == DrawMode.DEPTH_ONLY) {
       tex.beginDraw();
       tex.image(depthImg, 0, 120);
+      tex.filter(shader_threshmult_d);
       tex.endDraw();
     } else if (drawMode == DrawMode.RGB_ONLY) {
       tex.beginDraw();

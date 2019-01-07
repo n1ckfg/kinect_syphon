@@ -21,7 +21,12 @@ void setupShaders() {
 void updateShaders() {
   //shaderSetMouse(shader);
   //shaderSetTime(shader);
-  if (drawMode == DrawMode.RGBD) {
+  if (drawMode == DrawMode.DEPTH_ONLY) {
+    shaderSetVar(shader_threshmult_d, "threshold", threshold);
+    shaderSetVar(shader_threshmult_d, "alpha", 0);
+    shaderSetVar(shader_threshmult_d, "invert", int(invertDepth));
+    shaderSetTexture(shader_threshmult_d, "tex0", depthImg);
+  } else if (drawMode == DrawMode.RGBD) {
     shaderSetTexture(shader_rgba, "tex0", rgbImg);
     shaderSetTexture(shader_rgba, "tex1", depthImg);
   }
@@ -31,18 +36,14 @@ void updateShaders() {
   }
     
   if (layoutMode == LayoutMode.RGBDTK || layoutMode == LayoutMode.HOLOFLIX) {
-    if (glitch) {
-      shaderSetVar(shader_depth_color2, "alpha", 0);
-      shaderSetVar(shader_threshmult_d, "alpha", 0);
-      shaderSetVar(shader_threshmult_r, "alpha", 0);
-    } else {
-      shaderSetVar(shader_depth_color2, "alpha", 1);
-      shaderSetVar(shader_threshmult_d, "alpha", 1);
-      shaderSetVar(shader_threshmult_r, "alpha", 1);
-    }
+    shaderSetVar(shader_threshmult_d, "invert", int(invertDepth));
+    shaderSetVar(shader_depth_color2, "alpha", int(!glitch));
+    shaderSetVar(shader_threshmult_d, "alpha", int(!glitch));
+    shaderSetVar(shader_threshmult_r, "alpha", int(!glitch));
     shaderSetVar(shader_threshmult_d, "threshold", threshold);
-    shaderSetTexture(shader_threshmult_d, "tex0", depthImg);
     shaderSetVar(shader_threshmult_r, "threshold", threshold);
+
+    shaderSetTexture(shader_threshmult_d, "tex0", depthImg);
     shaderSetTexture(shader_threshmult_r, "tex0", depthImg);
     shaderSetTexture(shader_threshmult_r, "tex1", rgbImg);
   }

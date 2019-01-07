@@ -10,7 +10,9 @@ class Settings {
         if (data[i].equals("Mirror")) mirror = setBoolean(data[i+1]);
         if (data[i].equals("Glitch")) glitch = setBoolean(data[i+1]);
         if (data[i].equals("Threshold")) threshold = setFloat(data[i+1]);
-        if (data[i].equals("Draw Mode")) {
+        if (data[i].equals("Calibrate RGBD")) align = setBoolean(data[i+1]);
+        if (data[i].equals("Invert Depth")) invertDepth = setBoolean(data[i+1]);
+        if (data[i].equals("Draw Mode (RGBD, DEPTH_ONLY, RGB_ONLY, DEPTH_COLOR)")) {
             if (data[i+1].equals("RGBD")) {
               drawMode = DrawMode.RGBD;
             } else if (data[i+1].equals("DEPTH_ONLY")) {
@@ -21,7 +23,7 @@ class Settings {
               drawMode = DrawMode.DEPTH_COLOR;              
             }
         }
-        if (data[i].equals("Layout Mode")) {
+        if (data[i].equals("Layout Mode (SD, HOLOFLIX, RGBDTK)")) {
             if (data[i+1].equals("SD")) {
               layoutMode = LayoutMode.SD;
             } else if (data[i+1].equals("HOLOFLIX")) {

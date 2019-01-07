@@ -4,6 +4,7 @@ uniform sampler2D tex0;
 
 uniform float threshold;
 uniform float alpha;
+uniform float invert;
 
 vec4 threshFilter(vec3 v) {
 	float avg = (v.x + v.y + v.z) / 3.0;
@@ -21,7 +22,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 	vec4 col = texture2D(tex0, uv2);
 	vec4 mask = threshFilter(col.xyz);
 
-	fragColor = col * mask;
+	fragColor = abs(invert - (col * mask));
 }
 
 void main() {

@@ -6,6 +6,10 @@ void keyPressed() {
       break;
     case 'g':
       glitch = !glitch;
+      break;
+    case 'i':
+      invertDepth = !invertDepth;
+      break;
   }  
 } 
 

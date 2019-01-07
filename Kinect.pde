@@ -2,6 +2,7 @@ boolean mirror = false;
 boolean align = true;
 boolean multithreaded = true;
 //PImage depthImg, rgbImg;
+boolean invertDepth = false;
 
 // ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 

@@ -4,14 +4,20 @@ Kinect_Server
 Mirror
 false
 
-Draw Mode
-RGBD
+Draw Mode (RGBD, DEPTH_ONLY, RGB_ONLY, DEPTH_COLOR)
+DEPTH_ONLY
 
-Layout Mode
-HOLOFLIX
+Layout Mode (SD, HOLOFLIX, RGBDTK)
+SD
 
 Glitch
-true
+false
 
 Threshold
-12
+0
+
+Calibrate RGBD
+true
+
+Invert Depth
+false
