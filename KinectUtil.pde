@@ -1,3 +1,10 @@
+float rawDepthToMeters(int depthValue) {
+  if (depthValue < 2047) {
+    return (float)(1.0 / ((double)(depthValue) * -0.0030711016 + 3.3309495161));
+  }
+  return 0.0;
+}
+
 int depth2rgb(short depth) {
   int r,g,b;
 
